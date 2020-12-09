@@ -1,19 +1,11 @@
-# Configure Docker provider and connect to the local Docker socket
-provider "docker" {
-  host = "unix:///var/run/docker.sock"
+module "nginx_container_1" {
+  source = "./modules/custom_nginx_container"
+  container_name = "nginx_container_1"
+  port = 3000
 }
 
-# Create NGINX container
-resource "docker_container" "nginx" {
-  image = "nginx"
-  name  = "psyduck"
-  ports {
-    internal = 80
-    external = 80
-  }
+module "nginx_container_2" {
+  source = "./modules/custom_nginx_container"
+  container_name = "nginx_container_2"
+  port = 4000
 }
-
-resource "docker_image" "nginx" {
-  name = var.name
-}
-
