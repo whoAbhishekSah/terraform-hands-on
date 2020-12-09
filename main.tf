@@ -14,6 +14,6 @@ resource "docker_container" "nginx" {
 }
 
 resource "docker_image" "nginx" {
-  name = "nginx:latest"
+  name = var.name
 }
 
